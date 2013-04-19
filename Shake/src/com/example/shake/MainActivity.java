@@ -22,19 +22,16 @@ public class MainActivity extends Activity
 	//Set boolean flag when torch is turned on/off
 	private boolean isFlashOn = false;
 	
-	//Create camera object to access flahslight
-	private Camera camera;
+		//Create camera object to access flahslight
+	 private Camera camera;
 	
-	  private ShakeListener mShaker;
+	 private ShakeListener mShaker;
 	 private KeyguardLock lock;
 	 boolean gate=true;
 	 private WakeLock screenWakeLock;
+	 
+	 
 	
-	//Context object to refer context of the application
-	 
-	 //Retrieve application packages that are currently installed
-	 //on the device which includes camera, GPS etc.
-	 
 	  @Override
 	  public void onCreate(Bundle savedInstanceState)
 	  {
@@ -43,7 +40,11 @@ public class MainActivity extends Activity
 	    
 	    Context context = this;
 		PackageManager pm = context.getPackageManager();
-		if(!pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+		
+		final Vibrator vibe = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+		
+		if(!pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) 
+		{
 	    	Logger message;
 	    	Log.e("err", "Device has no camera!");
 	    	//Toast a message to let the user know that camera is not
@@ -52,44 +53,48 @@ public class MainActivity extends Activity
 	    	"Your device doesn't have camera!",Toast.LENGTH_SHORT).show();
 	    	//Return from the method, do nothing after this code block
 	    	return;
-	    	}
-		
-	    final Vibrator vibe = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-	    
+	    }
+
+		camera = Camera.open();
+    	final Parameters p = camera.getParameters();
+    	
 	    KeyguardManager keyguardManager = (KeyguardManager)getSystemService(Activity.KEYGUARD_SERVICE); 
-		   lock = keyguardManager.newKeyguardLock(KEYGUARD_SERVICE); 
+		lock = keyguardManager.newKeyguardLock(KEYGUARD_SERVICE); 
 		   
 	    mShaker = new ShakeListener(this);
-	    mShaker.setOnShakeListener(new ShakeListener.OnShakeListener () {
+	    mShaker.setOnShakeListener(new ShakeListener.OnShakeListener ()
+	    {
 	      public void onShake()
 	      {
 	        vibe.vibrate(100);
-	        camera = Camera.open();
-	    	final Parameters p = camera.getParameters();
+
 	    	//lock_screen();
         	//If Flag is set to true
-        	  if (isFlashOn) {
-        	  Log.i("info", "torch is turned off!");
-        	  //Set the flashmode to off                   
-        	  p.setFlashMode(Parameters.FLASH_MODE_OFF);
-        	  //Pass the parameter ti camera object
-        	  camera.setParameters(p);   
-        	  //Set flag to false               
-        	  isFlashOn = false;
-        	  //Set the button text to Torcn-ON
-        	 // button.setText("Torch-ON");
+	        
+        	  if (isFlashOn) 
+        	  {
+        		  Log.i("info", "torch is turned off!");
+        		  //Set the flashmode to off                   
+        		  p.setFlashMode(Parameters.FLASH_MODE_OFF);
+        		  //Pass the parameter ti camera object
+        		  camera.setParameters(p);   
+        		  //Set flag to false               
+        		  isFlashOn = false;
+        		  //Set the button text to Torcn-ON
+        		  // button.setText("Torch-ON");
         	  }
         	  //If Flag is set to false
-        	  else {
-        	  Log.i("info", "torch is turned on!");
-        	  //Set the flashmode to on
-        	  p.setFlashMode(Parameters.FLASH_MODE_TORCH);
-        	  //Pass the parameter ti camera object
-        	  camera.setParameters(p);
-        	  //Set flag to true
-        	  isFlashOn = true;
-        	  //Set the button text to Torcn-OFF
-        	 // button.setText("Torch-OFF");
+        	  else 
+        	  {
+        		  Log.i("info", "torch is turned on!");
+        		  //Set the flashmode to on
+        		  p.setFlashMode(Parameters.FLASH_MODE_TORCH);
+        		  //Pass the parameter ti camera object
+        		  camera.setParameters(p);
+        		  //Set flag to true
+        		  isFlashOn = true;
+        		  //Set the button text to Torcn-OFF
+        		  // button.setText("Torch-OFF");
         	  }
 	    	 
 	   /*       if (gate == true)
@@ -119,6 +124,7 @@ public class MainActivity extends Activity
 	   // camera = Camera.open();
 	    
 	  }
+	  
 	 private void unlockScreen() {
 	       // Window window = this.getWindow();
 	        WindowManager.LayoutParams layout = getWindow().getAttributes();
@@ -148,10 +154,6 @@ public class MainActivity extends Activity
 	        WindowManager.LayoutParams lp = mywindow.getAttributes();
 	        lp.screenBrightness = 0.1f;
 	        mywindow.setAttributes(lp);
-	    
-	      
-		  
-	        
 	        gate=false;
 	        
 	  }
