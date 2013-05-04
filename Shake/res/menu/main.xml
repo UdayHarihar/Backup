@@ -1,9 +1,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
+  <!--  <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
 
+    <item android:id="@+id/about"
+	android:title="About" />
+    
+	<item android:id="@+id/help"
+	android:title="Help" />  
+	
+	<item android:id="@+id/help"
+	android:title="Help" /> 
+-->
+	<item
+        android:id="@+id/menu_preference"
+        android:icon="@drawable/ic_menu_preferences_004"
+        android:title="@string/menu_preferences"/>
 </menu>

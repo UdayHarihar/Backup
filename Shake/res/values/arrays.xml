@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="app_service">
+        <item name="enable" >Enable service</item>
+        <item name="disable">Disable service</item>
+    </string-array>
+    <string-array name="app_service_values">
+        <item name="enable" >ENABLE</item>
+        <item name="disable" >DISABLE</item>
+    </string-array>
+   
+    
+    
+</resources>

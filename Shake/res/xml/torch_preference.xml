@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="key_app_service"
+        android:title="Background service" >
+        <ListPreference
+            android:defaultValue="0"
+            android:enabled="true"
+            android:entries="@array/app_service"
+            android:entryValues="@array/app_service_values"
+            android:key="change_app_service"
+            android:negativeButtonText="Cancel"
+            android:selectable="true"
+            android:summary="Choose between enable and disable service"
+            android:title="Enable or Disable background service" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="About " >
+
+        <!-- <Preference -->
+        <!-- android:enabled="true" -->
+        <!-- android:key="app_tutorial" -->
+        <!-- android:selectable="true" -->
+        <!-- android:summary="Show the application tutorial" -->
+        <!-- android:title="Tutorial" /> -->
+        
+        <Preference
+            android:enabled="true"
+            android:key="about_dev"
+            android:selectable="true"
+            android:summary="About the developer of this application"
+            android:title="About developer" /> 
+            
+        <Preference
+            android:enabled="true"
+            android:key="about_app"
+            android:selectable="true"
+            android:summary="About hamsanaada android application"
+            android:title="About the application" />
+        
+        <Preference
+            android:enabled="true"
+            android:key="app_version"
+            android:selectable="true"
+            android:summary="@string/en_app_version"
+            android:title="Application version" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
