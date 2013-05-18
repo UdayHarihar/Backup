@@ -1,10 +1,16 @@
 package com.hrh.screentorch;
 
-import com.hrh.shake.R;
+import com.hrh.shaketorch.R;
+import com.hrh.shaketorch.SampleSeekBarDialogPreferenceSettings;
+import com.hrh.shaketorch.ShakeActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.SeekBar;
@@ -63,6 +69,8 @@ public class ScreenTorch extends Activity {
 	  // TODO Auto-generated method stub
 
 	 }
+	 
+	 
 
 	 @Override
 	 public void onStopTrackingTouch(SeekBar arg0) {
@@ -70,4 +78,31 @@ public class ScreenTorch extends Activity {
 
 	 }});
 	 }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+        case R.id.menu_preference:
+        	handlePreferenceClick();
+        return true;
+     /*   case R.id.help:
+        	help();
+        return true; */
+        default:
+        return super.onOptionsItemSelected(item);
+        }
+	}
+	private void handlePreferenceClick() {
+
+		Intent preferenceIntent = new Intent(ScreenTorch.this,
+				SampleSeekBarDialogPreferenceSettings.class);
+		startActivityForResult(preferenceIntent, 0);
+	}
 	}

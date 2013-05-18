@@ -1,13 +1,9 @@
 package com.hrh.shaketorch;
 
-import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -16,11 +12,14 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
-import com.hrh.shake.R;
 
 /**
  * <p>
@@ -38,17 +37,23 @@ import com.hrh.shake.R;
  *          Copyright HRH
  */
 public class ActivityPreferences extends PreferenceActivity implements
-		OnPreferenceChangeListener, OnPreferenceClickListener {
+		OnPreferenceChangeListener, OnPreferenceClickListener ,SharedPreferences.OnSharedPreferenceChangeListener{
 
+	 
 
+	public static int maximum    = 100;
+	public static int interval   = 5;
+	private float oldValue = 25;
 	private ListPreference appService;
 	private SharedPreferences settings;
 	private String applicationService;
 	private Preference aboutDeveloper;
 	private Preference aboutApp;
+	
 	private Builder builder;
 	private  Context context = this;
 	private boolean flag;
+	
 
 
 
@@ -56,7 +61,8 @@ public class ActivityPreferences extends PreferenceActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// preference resource is added
-		addPreferencesFromResource(R.xml.torch_preference);
+	
+	addPreferencesFromResource(R.xml.torch_preference);
 
 		// get the preference
 		settings = PreferenceManager.getDefaultSharedPreferences(this);
@@ -64,6 +70,8 @@ public class ActivityPreferences extends PreferenceActivity implements
 		// declare the view objects
 		appService = (ListPreference) getPreferenceScreen().findPreference(
 				Constants.PREF_KEY_CHANGE_SERVICE);
+		
+	
 
 		// Set the state of the app version listing items based on the saved
 		// preference - they are not handled by default
@@ -78,9 +86,11 @@ public class ActivityPreferences extends PreferenceActivity implements
 			else {
 				appService.setValue(Constants.ENABLE);
 			}
+			
+		
 		}
 
-
+	
 		// about developer
 		aboutDeveloper = (Preference) getPreferenceScreen().findPreference(
 				Constants.PREF_KEY_ABOUT_DEVELOPER);
@@ -88,6 +98,9 @@ public class ActivityPreferences extends PreferenceActivity implements
 		// about app
 		aboutApp = (Preference) getPreferenceScreen().findPreference(
 				Constants.PREF_KEY_ABOUT_APP);
+		
+	
+	
 
 	}
 
@@ -151,17 +164,7 @@ public class ActivityPreferences extends PreferenceActivity implements
 			if (((String) newValue).equals(Constants.ENABLE)) {
 				
 				Log.i("service","preference changed to enable");
-				//start the service from here 
-				flag=isMyServiceRunning();
-				if (flag)
-				{
-					Toast.makeText(context,"Service is running..!!",Toast.LENGTH_LONG).show();	
-				}
-				else 
-				{
-					Intent i=new Intent(this, ShakeService.class);
-					this.startService(i);
-				}
+				
 				
 			/*	if (applicationService.equals(Constants.DISABLE)) {
 					// Preferences are changed automatically if the return type
@@ -180,8 +183,8 @@ public class ActivityPreferences extends PreferenceActivity implements
 
 			} else if (((String) newValue).equals(Constants.DISABLE)) {			
 				Log.i("service","preference changed to disabled");
-				Intent i=new Intent(this, ShakeService.class);
-				this.stopService(i);
+			//	Intent i=new Intent(this, ShakeService.class);
+			//	this.stopService(i);
 				//stop the service from here 
 		      //  stopService(new Intent(this, ShakeService.class));
 
@@ -203,16 +206,7 @@ public class ActivityPreferences extends PreferenceActivity implements
 	
 	}
 
-	private boolean isMyServiceRunning() {
-	    ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-	    for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-	        if (ShakeService.class.getName().equals(service.service.getClassName())) {
-	            return true;
-	        }
-	    }
-	    return false;
-	}
-	
+
 	@Override
 	public boolean onPreferenceClick(Preference preference) 
 	{
@@ -267,12 +261,16 @@ public class ActivityPreferences extends PreferenceActivity implements
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		 if(!context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))
-	        {
-		//MainActivity obj=new MainActivity();
-		//obj.torch();
-	        }
+
 		super.onBackPressed();
 	}
+
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

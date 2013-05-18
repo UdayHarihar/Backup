@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:example="http://schemas.android.com/apk/res/com.hrh.shaketorch"> >
 
-    <PreferenceCategory
+     <PreferenceCategory
         android:key="key_app_service"
         android:title="Background service" >
         <ListPreference
@@ -15,6 +16,17 @@
             android:summary="Choose between enable and disable service"
             android:title="Enable or Disable background service" />
     </PreferenceCategory>
+    
+
+    <com.hrh.shaketorch.SeekBarDialogPreference
+		android:key="seekBar"
+		example:minimumValue="20"
+		example:maximumValue="100"
+		example:stepSize="10"
+		example:units="%"
+		android:title="Title"
+		android:summary="Summary"/>
+
 
     <PreferenceCategory android:title="About " >
 
@@ -45,6 +57,8 @@
             android:selectable="true"
             android:summary="@string/en_app_version"
             android:title="Application version" />
+        
+ 
     </PreferenceCategory>
 
 </PreferenceScreen>

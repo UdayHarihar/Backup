@@ -10,7 +10,7 @@ import android.view.Gravity;
 import android.widget.Toast;
 
 import com.hrh.screentorch.ScreenTorch;
-import com.hrh.shake.R;
+
 
 
 

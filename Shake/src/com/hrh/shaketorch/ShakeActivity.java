@@ -1,12 +1,21 @@
 package com.hrh.shaketorch;
 
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.KeyguardManager;
 import android.app.ActivityManager.RunningServiceInfo;
+import android.app.KeyguardManager.KeyguardLock;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
+import android.hardware.Camera.Parameters;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,17 +23,31 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.hrh.shaketorch.*;
 
-import com.hrh.shake.*;
+
 
 public class ShakeActivity extends Activity {
 
 	private  Context context = this;
 	private boolean flag;
+	//BroadcastReceiver mReceiver = new ScreenReceiver();
+	//Create camera object to access flahslight
+    private boolean isFlashOn = false;
+	private Camera camera;
+	private ShakeListener mShaker;
+	private KeyguardLock lock;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shake);
+		// initialize receiver
+        //IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+        //filter.addAction(Intent.ACTION_SCREEN_OFF);
+     
+       // registerReceiver(mReceiver, filter);
+        
 		flag=isMyServiceRunning();
 		if (flag)
 		{
@@ -35,6 +58,12 @@ public class ShakeActivity extends Activity {
 			Intent i=new Intent(this, ShakeService.class);
 			this.startService(i);
 		}
+		// initialize receiver
+       /*IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        
+        registerReceiver(mReceiver, filter);*/
+        // your code
 	}
 
 	  private boolean isMyServiceRunning() {
@@ -46,19 +75,14 @@ public class ShakeActivity extends Activity {
 		    }
 		    return false;
 		}
-	
-/*	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.shake, menu);
-		return true;
-	}*/
 
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+		
 		Log.i("ShakeActivity","In Ondestroy()");
+	
 	}
 
 	@Override
@@ -92,6 +116,7 @@ public class ShakeActivity extends Activity {
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
+		//unregisterReceiver(mReceiver);
 		super.onStop();
 		Log.i("ShakeActivity","In OnStop()");
 	}
@@ -123,12 +148,9 @@ public class ShakeActivity extends Activity {
 	private void handlePreferenceClick() {
 
 		Intent preferenceIntent = new Intent(ShakeActivity.this,
-				ActivityPreferences.class);
+				SampleSeekBarDialogPreferenceSettings.class);
 		startActivityForResult(preferenceIntent, 0);
 	}
 	  
-
-
-
 	
 }
