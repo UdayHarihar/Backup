@@ -9,15 +9,14 @@ import android.hardware.SensorManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
+import com.hrh.shaketorch.ShakeTorchApp;
 
 public class ShakeListener implements SensorEventListener
 {
 	
-	
-  // 
 
 	 
-	  private static final int FORCE_THRESHOLD = 2000;
+	 // private static final int FORCE_THRESHOLD = 9000;
 	  private static final int TIME_THRESHOLD = 100;
 	  private static final int SHAKE_TIMEOUT = 500;
 	  private static final int SHAKE_DURATION = 1000;
@@ -32,17 +31,17 @@ public class ShakeListener implements SensorEventListener
 	 // private int FORCE_THRESHOLD;
 	  private long mLastShake;
 	  private long mLastForce;
+	  private int FORCE_THRESHOLD;
  
 	  public interface OnShakeListener
 	  {
-  
+		  
 	    public void onShake();
 	  }
  
 	  public ShakeListener(Context context)
 	  {
 	    mContext = context;
-	   
 	    resume();
 	  }
  
@@ -86,9 +85,12 @@ public class ShakeListener implements SensorEventListener
 	    if ((now - mLastTime) > TIME_THRESHOLD) {
 	      long diff = now - mLastTime;
 	      float speed = Math.abs(event.values[SensorManager.DATA_X] + event.values[SensorManager.DATA_Y] + event.values[SensorManager.DATA_Z] - mLastX - mLastY - mLastZ) / diff * 10000;
-	   //   SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-	  //   int  value=sharedPrefs.getInt("seekBar", -1);
-	   //  Log.d("value", "lister "+value);
+	      SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
+	      int force=settings.getInt("seekBar",1500);
+	      force=force*50;
+	      FORCE_THRESHOLD = force;
+	      Log.d("value", "lister "+FORCE_THRESHOLD);
+	     //Log.d("value", "lister "+value);
 	      if (speed > FORCE_THRESHOLD) {
 	        if ((++mShakeCount >= SHAKE_COUNT) && (now - mLastShake > SHAKE_DURATION)) {
 	          mLastShake = now;

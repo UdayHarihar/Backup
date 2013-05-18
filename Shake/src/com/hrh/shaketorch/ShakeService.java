@@ -2,6 +2,7 @@ package com.hrh.shaketorch;
 
 import java.util.logging.Logger;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.Service;
@@ -31,7 +32,7 @@ public class ShakeService extends Service {
 		private ShakeListener mShaker;
 		private KeyguardLock lock;
 		private  Context context = this;
-		
+		private Camera camera;
 
 	 @Override
      public void onCreate() {
@@ -41,7 +42,7 @@ public class ShakeService extends Service {
          filter.addAction(Intent.ACTION_SCREEN_OFF);
          registerReceiver(mReceiver, filter);*/
         final Vibrator vibe = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-        PackageManager pm = context.getPackageManager();
+        PackageManager p = context.getPackageManager();
         
 		
 		Log.i("call","in onrestart");
@@ -50,12 +51,13 @@ public class ShakeService extends Service {
 		mShaker = new ShakeListener(this);
 	    mShaker.setOnShakeListener(new ShakeListener.OnShakeListener ()
 	    {
-	      public void onShake()
+	      @SuppressLint("NewApi")
+		public void onShake()
 	      {
 	        vibe.vibrate(100);
 	        
-	        Camera camera = Camera.open(); 
-	        final Parameters p = camera.getParameters();
+	      //  Camera camera = Camera.open(); 
+	       // final Parameters p = camera.getParameters();
 	    	//lock_screen();
       	//If Flag is set to true
 	        
@@ -69,11 +71,18 @@ public class ShakeService extends Service {
       		 toast.show();
      
       		
-      		p.setFlashMode(Parameters.FLASH_MODE_OFF);
-      		camera.setParameters(p);
+      		//p.setFlashMode(Parameters.FLASH_MODE_OFF);
+      		//camera.setParameters(p);
       	
       		 
-      		
+      	//Turn off
+      		//Camera camera = Camera.open();
+      		Parameters p = camera.getParameters();
+      		p.setFlashMode(Parameters.FLASH_MODE_OFF);
+      		camera.setParameters(p);
+      		camera.stopPreview();
+      		camera.release();
+      		camera = null;
       		 
   		  //Pass the parameter ti camera object
       		// p.setFlashMode(Parameters.FLASH_MODE_TORCH);
@@ -106,11 +115,28 @@ public class ShakeService extends Service {
 	       // camera = Camera.open();
       		// final Parameters p = camera.getParameters();
       		  //Set the flashmode to on
-      		  p.setFlashMode(Parameters.FLASH_MODE_TORCH);
+      		//  p.setFlashMode(Parameters.FLASH_MODE_TORCH);
       		  //Pass the parameter ti camera object
-      		 camera.setParameters(p);
+      		// camera.setParameters(p);
       		//camera.setPreviewCallback(null);
      		 
+      	/*	Camera camera = Camera.open();
+      		Parameters p = camera.getParameters();
+      		p.setFlashMode(Parameters.FLASH_MODE_TORCH);
+      		camera.setParameters(p);*/
+      		
+      		try {
+      	        releaseCameraAndPreview();
+      	      camera = Camera.open();
+      	      //  qOpened = (camera != null);
+      	    } catch (Exception e) {
+      	        Log.e(getString(R.string.app_name), "failed to open Camera");
+      	        e.printStackTrace();
+      	    }
+      		Parameters p = camera.getParameters();
+      		p.setFlashMode(Parameters.FLASH_MODE_TORCH);
+      		camera.setParameters(p);
+
       		    
       	/*	Parameters p = camera.getParameters();
       		p.setFlashMode(Parameters.FLASH_MODE_TORCH);
@@ -128,8 +154,8 @@ public class ShakeService extends Service {
       	  
       	if (release == true) 
 		  {
-      		camera.stopPreview();
-      		camera.release();
+      	//	camera.stopPreview();
+      	//	camera.release();
 			  
 		  }
       	  
@@ -140,6 +166,14 @@ public class ShakeService extends Service {
 	        
          
      }
+	 
+	 private void releaseCameraAndPreview() {
+		   // mPreview.setCamera(null);
+		    if (camera != null) {
+		    	camera.release();
+		    	camera = null;
+		    }
+		}
 	 
 	 public void release()
  	  { 

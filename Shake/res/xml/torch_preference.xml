@@ -20,7 +20,7 @@
 
     <com.hrh.shaketorch.SeekBarDialogPreference
 		android:key="seekBar"
-		example:minimumValue="20"
+		example:minimumValue="10"
 		example:maximumValue="100"
 		example:stepSize="10"
 		example:units="%"

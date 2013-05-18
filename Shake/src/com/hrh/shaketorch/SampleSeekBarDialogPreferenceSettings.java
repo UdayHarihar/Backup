@@ -45,8 +45,8 @@ public class SampleSeekBarDialogPreferenceSettings extends
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		getPreferenceManager().setSharedPreferencesName(
-			"com.hrh.shaketorch.seekbar");
+		//getPreferenceManager().setSharedPreferencesName(
+		//	"com.hrh.shaketorch.seekbar");
 		settings = PreferenceManager.getDefaultSharedPreferences(this);
 		addPreferencesFromResource(R.xml.torch_preference);
 		getPreferenceManager().getSharedPreferences().
@@ -185,6 +185,8 @@ aboutApp = (Preference) getPreferenceScreen().findPreference(
 					Log.i("service","load from disable");
 				}*/
 			}
+			
+			
 		}
 		return true;
 	}

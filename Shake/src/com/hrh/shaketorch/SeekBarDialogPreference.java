@@ -112,6 +112,7 @@ public class SeekBarDialogPreference extends
 		Log.d("value","max="+ value);
 		
 Log.d("value","vv="+(value+ minimumValue));
+
 		callChangeListener(value);
 	}
 	/**
