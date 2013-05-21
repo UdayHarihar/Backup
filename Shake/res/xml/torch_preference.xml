@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:example="http://schemas.android.com/apk/res/com.hrh.shake"> 
+
+     <PreferenceCategory
+        android:key="key_app_service"
+        android:title="Background service" >
+        <ListPreference
+            android:defaultValue="0"
+            android:enabled="true"
+            android:entries="@array/app_service"
+            android:entryValues="@array/app_service_values"
+            android:key="change_app_service"
+            android:negativeButtonText="Cancel"
+            android:selectable="true"
+            android:summary="Enable or Disable background mode"
+            android:title="Background Mode" />
+    </PreferenceCategory>
+    
+
+  
+<com.hrh.shake.SeekBarDialogPreference
+		android:key="seekBar"
+		android:title="@string/dialog_title"
+	    android:dialogTitle="@string/dialog_title"
+	    android:summary="@string/summary"
+	    android:persistent="true"
+	    android:defaultValue="20"
+	    example:minValue="10"
+	    example:maxValue="100"/>
+     
+    <PreferenceCategory android:title="About " >
+
+        <!-- <Preference -->
+        <!-- android:enabled="true" -->
+        <!-- android:key="app_tutorial" -->
+        <!-- android:selectable="true" -->
+        <!-- android:summary="Show the application tutorial" -->
+        <!-- android:title="Tutorial" /> -->
+        
+        <Preference
+            android:enabled="true"
+            android:key="about_dev"
+            android:selectable="true"
+            android:summary="About the developer of this application"
+            android:title="About developer" /> 
+            
+        <Preference
+            android:enabled="true"
+            android:key="about_app"
+            android:selectable="true"
+            android:summary="About Shake Torch android application"
+            android:title="About the application" />
+        
+        <Preference
+            android:enabled="true"
+            android:key="app_version"
+            android:selectable="true"
+            android:summary="@string/en_app_version"
+            android:title="Application version" />
+        
+ 
+    </PreferenceCategory>
+
+</PreferenceScreen>

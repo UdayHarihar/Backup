@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hrh.shake"
+    android:versionCode="3"
+    android:versionName="1.2.1" >
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:name=".ShakeTorchApp"
+        android:screenOrientation="portrait"
+        android:persistent="true"  >
+        <activity
+            android:name="com.hrh.shake.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.hrh.shake.Seekbar" >
+        </activity>
+        <activity android:name="com.hrh.shake.SampleSeekBarDialogPreferenceSettings"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        <activity android:name="com.hrh.screentorch.ScreenTorch"
+            	  android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.hrh.shake.ActivityPreferences"
+            android:configChanges="keyboardHidden|orientation|screenLayout|screenSize"
+            android:label="@string/preference_activity_name"
+            android:theme="@android:style/Theme" >
+        </activity>
+
+        <service
+            android:name="com.hrh.shake.ShakeService"
+            android:enabled="true" />
+
+        <activity
+            android:name="com.hrh.shake.ShakeActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+        <receiver android:name=".ScreenReceiver">
+    <intent-filter>
+        <action android:name="android.intent.action.SCREEN_OFF"/>
+        <action android:name="android.intent.action.SCREEN_ON"/>
+    </intent-filter>
+</receiver>
+        
+    </application>
+
+</manifest>
