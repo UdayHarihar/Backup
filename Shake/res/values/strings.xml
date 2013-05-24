@@ -7,7 +7,7 @@
     <string name="about"></string>
     <string name="menu_preferences">Preferences</string>
     <string name="brightness">Brightness</string>
-    <string name="en_app_version">1.2</string>
+    <string name="en_app_version">1.2.2</string>
     <string name="pref_notification_freq_once">once</string>
     <string name="preference_activity_name">Preferences</string>
     <string name="summary">Shake sense limit: %1$d</string>
@@ -27,7 +27,7 @@
     	<string name="en_about_application">&lt;p> A very simple user friendly LED-Torch App which activates and deactivates just with a shake, It can run in background mode.
     	     				   &lt;br>&lt;br>For mobiles which are not powered with flash-Light this App will enhances the brightness of the screen.  
     	                       &amp;nbsp;&lt;/p></string>
-       <string name="en_about_developer">&lt;p>We are the developing group ruthlessly working to build android Apps which are productive and user friendly.
+       <string name="en_about_developer">&lt;p>We are the developing group working with grate aspirations to build android Apps which are productive and user friendly.
                                          &lt;br>&lt;br>keeping in mind a great vision ahead,we are releasing our first product as the kick off.
                                          &lt;br>&lt;br>Do support us and give feedback, your feedback will help us to improve the standard of our Apps.
                                          &amp;nbsp;&lt;/p> </string>

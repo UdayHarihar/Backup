@@ -2,15 +2,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    >
+    android:background="@drawable/background" >
     
-     <Button
+    <!--  <Button
+         android:id="@+id/bt_scrrentorch"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentLeft="true"
+         android:background="@drawable/gradient"
+         android:text="@string/bt_screen" />
+
+    <Button
         android:id="@+id/bt_scrrentorch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/bt_screen" />-->
+
+    <Button
+         android:id="@+id/bt_scrrentorch"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+         android:background="@drawable/gradient"
         android:text="@string/bt_screen" />
 
 </RelativeLayout>

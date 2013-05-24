@@ -32,7 +32,7 @@ public class ShakeService extends Service {
      public void onCreate() {
          super.onCreate();
         final Vibrator vibe = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-        PackageManager p = context.getPackageManager();	
+       PackageManager p = context.getPackageManager();	
 		Log.i("call","in onrestart");
 		// Toast.makeText(this, "Background mode activated", Toast.LENGTH_LONG).show();
 	    //Shake detection in Activity

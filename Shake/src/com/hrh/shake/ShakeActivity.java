@@ -50,7 +50,7 @@ public class ShakeActivity extends Activity {
 		flag=isMyServiceRunning();
 		if (flag)
 		{
-			Toast.makeText(context,"Service is running..!!",Toast.LENGTH_LONG).show();	
+			//Toast.makeText(context,"Service is running..!!",Toast.LENGTH_LONG).show();	
 		}
 		else 
 		{
@@ -67,11 +67,13 @@ public class ShakeActivity extends Activity {
 	  @Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		super.onBackPressed();
-	       Intent intent = new Intent(Intent.ACTION_MAIN);
+		
+		 /*  Intent intent = new Intent(Intent.ACTION_MAIN);
 	        intent.addCategory(Intent.CATEGORY_HOME);
 	        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	        startActivity(intent);    
+	        startActivity(intent); */
+	        super.onBackPressed();
+	      
 	}
 
 	private boolean isMyServiceRunning() {

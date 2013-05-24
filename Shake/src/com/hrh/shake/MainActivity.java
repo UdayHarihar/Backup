@@ -35,6 +35,7 @@ public class MainActivity extends Activity
         	}
         	Intent intent=new Intent(MainActivity.this,ShakeActivity.class);
         	MainActivity.this.startActivity(intent);
+        	
         }
         else 
         {
@@ -47,9 +48,24 @@ public class MainActivity extends Activity
         	}
         	Intent intent=new Intent(MainActivity.this,ScreenTorch.class);
         	MainActivity.this.startActivity(intent);  
+        	//Intent intent=new Intent(MainActivity.this,ShakeActivity.class);
+        	//MainActivity.this.startActivity(intent);
         	//Intent intent=new Intent(MainActivity.this,ShakeService2.class);
         	//MainActivity.this.startService(intent);  
         }
+	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+	}
+
+	@Override
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		onBackPressed();
+		super.onRestart();
 	}
 
 

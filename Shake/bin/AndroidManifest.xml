@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hrh.shake"
-    android:versionCode="3"
-    android:versionName="1.2.1" >
+    android:versionCode="4"
+    android:versionName="1.2.2" >
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
@@ -14,6 +14,14 @@
 
     <uses-feature android:name="android.hardware.camera" />
 	<uses-feature android:name="android.hardware.camera.flash" />
+	<uses-permission android:name="android.permission.INTERNET"/>
+	
+	<supports-screens android:smallScreens="true" 
+          android:normalScreens="true" 
+          android:largeScreens="true"
+          android:xlargeScreens="true"
+          android:anyDensity="true" />
+	
 	
     <application
         android:allowBackup="true"
