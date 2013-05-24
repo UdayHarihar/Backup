@@ -83,10 +83,10 @@ public class ShakeListener implements SensorEventListener
 	      long diff = now - mLastTime;
 	      float speed = Math.abs(event.values[SensorManager.DATA_X] + event.values[SensorManager.DATA_Y] + event.values[SensorManager.DATA_Z] - mLastX - mLastY - mLastZ) / diff * 10000;
 	      SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
-	      int force=settings.getInt("seekBar",30);
+	      int force=settings.getInt("seekBar",40);
 	      force=force*30;
 	      FORCE_THRESHOLD = force;
-	      //Log.d("value", "lister "+FORCE_THRESHOLD);
+	      Log.d("value", "lister "+FORCE_THRESHOLD);
 	     //Log.d("value", "lister "+value);
 	      if (speed > FORCE_THRESHOLD) {
 	        if ((++mShakeCount >= SHAKE_COUNT) && (now - mLastShake > SHAKE_DURATION)) {

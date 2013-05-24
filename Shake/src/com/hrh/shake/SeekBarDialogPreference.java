@@ -71,7 +71,7 @@ public final class SeekBarDialogPreference extends DialogPreference implements O
 
 	// Setup text label for current value
 	mValueText = (TextView) view.findViewById(R.id.current_value);
-	mValueText.setText(Integer.toString(mCurrentValue));
+	mValueText.setText(Integer.toString(mCurrentValue)+"%");
 
 	return view;
     }
@@ -106,7 +106,7 @@ public final class SeekBarDialogPreference extends DialogPreference implements O
 	// Update current value
 	mCurrentValue = value + mMinValue;
 	// Update label with current value
-	mValueText.setText(Integer.toString(mCurrentValue));
+	mValueText.setText(Integer.toString(mCurrentValue)+"%");
     }
 
     public void onStartTrackingTouch(SeekBar seek) {

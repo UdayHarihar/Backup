@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 
 import com.hrh.shake.R;
-import com.hrh.shake.SampleSeekBarDialogPreferenceSettings;
+import com.hrh.shake.SeekBarDialogPreferenceSettings;
 
 public class ScreenTorch extends Activity {
 	 private Builder builder;
@@ -148,7 +148,7 @@ public class ScreenTorch extends Activity {
 	private void handlePreferenceClick() {
 
 		Intent preferenceIntent = new Intent(ScreenTorch.this,
-				SampleSeekBarDialogPreferenceSettings.class);
+				SeekBarDialogPreferenceSettings.class);
 		startActivityForResult(preferenceIntent, 0);
 	}
 	}

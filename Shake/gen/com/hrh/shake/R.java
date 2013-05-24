@@ -78,19 +78,19 @@ containing a value of this type.
     }
     public static final class id {
         public static final int about=0x7f0b000f;
-        public static final int backlightcontrol=0x7f0b0004;
-        public static final int backlightsetting=0x7f0b0003;
-        public static final int bt_scrrentorch=0x7f0b0000;
-        public static final int current_value=0x7f0b0006;
-        public static final int custom_title=0x7f0b0001;
+        public static final int backlightcontrol=0x7f0b0003;
+        public static final int backlightsetting=0x7f0b0002;
+        public static final int bt_scrrentorch=0x7f0b0006;
+        public static final int current_value=0x7f0b0005;
+        public static final int custom_title=0x7f0b0000;
         public static final int custom_toast=0x7f0b0007;
         public static final int developer=0x7f0b0010;
         public static final int help=0x7f0b0011;
         public static final int help2=0x7f0b000e;
         public static final int image=0x7f0b0008;
-        public static final int max_value=0x7f0b0005;
+        public static final int max_value=0x7f0b0004;
         public static final int menu_preference=0x7f0b000d;
-        public static final int min_value=0x7f0b0002;
+        public static final int min_value=0x7f0b0001;
         public static final int seek_bar=0x7f0b000a;
         public static final int seekbar=0x7f0b000c;
         public static final int text=0x7f0b0009;

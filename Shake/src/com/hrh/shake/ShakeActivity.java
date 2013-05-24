@@ -2,8 +2,8 @@ package com.hrh.shake;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.AlertDialog;
 import android.app.ActivityManager.RunningServiceInfo;
+import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.KeyguardManager.KeyguardLock;
 import android.content.Context;
@@ -12,15 +12,16 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
-
+import com.hrh.screentorch.ScreenTorch;
 
 public class ShakeActivity extends Activity {
 
@@ -31,10 +32,20 @@ public class ShakeActivity extends Activity {
 	private ShakeListener mShaker;
 	private KeyguardLock lock;
 	private Builder builder;
+	private Button screentorch;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shake);
+		screentorch= (Button) findViewById(R.id.bt_scrrentorch);
+		screentorch.setOnClickListener(new View.OnClickListener() {	
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(ShakeActivity.this,ScreenTorch.class);
+				ShakeActivity.this.startActivity(intent);
+			}
+		});
 		
 		flag=isMyServiceRunning();
 		if (flag)
@@ -57,10 +68,10 @@ public class ShakeActivity extends Activity {
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
-	   /*     Intent intent = new Intent(Intent.ACTION_MAIN);
+	       Intent intent = new Intent(Intent.ACTION_MAIN);
 	        intent.addCategory(Intent.CATEGORY_HOME);
 	        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	        startActivity(intent);    */
+	        startActivity(intent);    
 	}
 
 	private boolean isMyServiceRunning() {
@@ -111,7 +122,7 @@ public class ShakeActivity extends Activity {
 	private void handlePreferenceClick() {
 
 		Intent preferenceIntent = new Intent(ShakeActivity.this,
-				SampleSeekBarDialogPreferenceSettings.class);
+				SeekBarDialogPreferenceSettings.class);
 		startActivityForResult(preferenceIntent, 0);
 	}
 	  

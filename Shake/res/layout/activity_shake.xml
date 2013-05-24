@@ -4,5 +4,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     >
+    
+     <Button
+        android:id="@+id/bt_scrrentorch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/bt_screen" />
 
 </RelativeLayout>
